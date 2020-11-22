@@ -1,0 +1,33 @@
+﻿<!-- Vue Component: Card -->
+
+<style>
+    .card {
+        width: 15rem;
+    }
+</style>
+
+<script type="text/javascript">
+    Vue.component('vue-card', {
+        props: {
+            id: String,
+            name: String,
+            img: String
+        },
+        template: '#vue-card-template'
+    });
+</script>
+
+<script type="text/template" id="vue-card-template">
+    <div v-bind:id="id" v-bind:name="name">
+        <div class="card">
+            <img v-bind:src="img" class="card-img-top p-4 bg-light border-bottom">
+            <div class="card-body">
+                <p class="card-text">
+                    <slot></slot>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+
+<!-- End Vue Component -->
