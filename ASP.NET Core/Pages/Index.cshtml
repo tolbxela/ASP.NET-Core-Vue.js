@@ -10,9 +10,15 @@
 </div>
 
 <div id="app">
-    <vue-card id="Id" name="Card" img="https://vuejs.org/images/logo.png" class="mb-4">
-        <h6>Bootstrap 4 Card Vue Component</h6>
-    </vue-card>
+    <div class="card-deck pt-4">
+        @for (var num = 1; num <= 4; num++)
+        {
+            var Card = $"Card_{num}";
+            <vue-card id="@Card" name="@Card" img="https://vuejs.org/images/logo.png" class="mb-4">
+                <h6>Card @num</h6>
+            </vue-card>
+        }
+    </div>
 </div>
 
 @section Scripts {
