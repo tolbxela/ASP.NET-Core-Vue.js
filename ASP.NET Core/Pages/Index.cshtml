@@ -10,6 +10,7 @@
 </div>
 
 <div id="app">
+
     <div class="card-deck pt-4">
         @for (var num = 1; num <= 4; num++)
         {
@@ -17,6 +18,18 @@
             <vue-card id="@Card" name="@Card" img="https://vuejs.org/images/logo.png" class="mb-4">
                 <h6>Card @num</h6>
             </vue-card>
+        }
+    </div>
+
+    <center><h3>The Vue Card 2 Component (<i>vue-card2.vue</i>)</h3></center>
+
+    <div id="app" class="card-deck pt-4">
+        @for (var num = 1; num <= 4; num++)
+        {
+            var Card = $"Card_{num}";
+            <vue-card2 id="@Card" name="@Card" img="https://vuejs.org/images/logo.png" class="mb-4">
+                <h6>Card @num</h6>
+            </vue-card2>
         }
     </div>
 </div>
@@ -27,7 +40,10 @@
 
     <script type="text/javascript">
         var app = new Vue({
-            el: '#app'
+            el: '#app',
+            components: {
+                'vue-card2': window.httpVueLoader('/js/vue-card2.vue')
+            }
         })
     </script>
 }
