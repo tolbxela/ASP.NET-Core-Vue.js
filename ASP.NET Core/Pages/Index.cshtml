@@ -10,6 +10,9 @@
 </div>
 
 <div id="app">
+
+    <center><h3>The Vue 3 Card Component</h3></center>
+
     <div class="card-deck pt-4">
         @for (var num = 1; num <= 4; num++)
         {
@@ -27,6 +30,7 @@
 
     <script type="text/javascript">
         const app = createApp({});
+        app.component('vue-card', vue_card);
         const vm = app.mount('#app');
     </script>
 }
