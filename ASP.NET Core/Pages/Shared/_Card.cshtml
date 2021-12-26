@@ -7,14 +7,15 @@
 </style>
 
 <script type="text/javascript">
-    Vue.component('vue-card', {
+
+    var vue_card = {
         props: {
             id: String,
             name: String,
             img: String
         },
         template: '#vue-card-template'
-    });
+    };
 </script>
 
 <script type="text/template" id="vue-card-template">
