@@ -39,11 +39,7 @@
     <partial name="_Card" />
 
     <script type="text/javascript">
-        var app = new Vue({
-            el: '#app',
-            components: {
-                'vue-card2': window.httpVueLoader('/js/vue-card2.vue')
-            }
-        })
+        const app = createApp({});
+        const vm = app.mount('#app');
     </script>
 }
