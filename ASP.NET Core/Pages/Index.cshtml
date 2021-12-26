@@ -11,7 +11,7 @@
 
 <div id="app">
 
-    <center><h3>The Vue 3 Card Component</h3></center>
+    <center><h3>The Vue 3 Card Component (Razor Partial File: <i>_Card.cshtml</i>)</h3></center>
 
     <div class="card-deck pt-4">
         @for (var num = 1; num <= 4; num++)
@@ -23,7 +23,7 @@
         }
     </div>
 
-    <center><h3>The Vue Card 2 Component (<i>vue-card2.vue</i>)</h3></center>
+    <center><h3>The Vue 3 Card Single File Component (SFC: <i>vue-card2.vue</i>)</h3></center>
 
     <div id="app" class="card-deck pt-4">
         @for (var num = 1; num <= 4; num++)
@@ -41,8 +41,39 @@
     <partial name="_Card" />
 
     <script type="text/javascript">
-        const app = createApp({});
-        app.component('vue-card', vue_card);
-        const vm = app.mount('#app');
+
+        // Options from the vue3-sfc-loader Example at https://github.com/FranckFreiburger/vue3-sfc-loader#example
+
+        const options = {
+            moduleCache: {
+                vue: Vue
+            },
+            async getFile(url) {
+
+                const res = await fetch(url);
+                if (!res.ok)
+                    throw Object.assign(new Error(res.statusText + ' ' + url), { res });
+                return {
+                    getContentData: asBinary => asBinary ? res.arrayBuffer() : res.text(),
+                }
+            },
+            addStyle(textContent) {
+
+                const style = Object.assign(document.createElement('style'), { textContent });
+                const ref = document.head.getElementsByTagName('style')[0] || null;
+                document.head.insertBefore(style, ref);
+            },
+        }
+
+        const { loadModule } = window['vue3-sfc-loader'];
+
+        const app = createApp({
+            components: {
+                'vue-card': vue_card, // Vue Component from Razor Partial
+                'vue-card2': Vue.defineAsyncComponent(() => loadModule('./js/vue-card2.vue', options)) // Vue SFC
+            }
+        });
+
+        app.mount('#app');
     </script>
 }
