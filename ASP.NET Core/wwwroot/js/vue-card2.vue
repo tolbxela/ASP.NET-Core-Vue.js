@@ -3,7 +3,7 @@
 <template>
     <div v-bind:id="id" v-bind:name="name">
         <div class="card">
-            <img v-bind:src="img" class="card-img-top p-4 bg-light border-bottom">
+            <img v-bind:src="img" class="card-img-top p-2 bg-light border-bottom">
             <div class="card-body">
                 <p class="card-text">
                     <slot></slot>
